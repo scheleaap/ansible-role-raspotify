@@ -1,0 +1,7 @@
+---
+- name: "Restart Raspotify"
+  listen: "restart raspotify"
+  become: true
+  service:
+    name: raspotify
+    state: restarted

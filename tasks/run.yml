@@ -1,0 +1,11 @@
+---
+- name: "Ensure Raspotify starts at boot"
+  become: true
+  service:
+    name: raspotify
+    enabled: yes
+- name: "Ensure Raspotify is running"
+  become: true
+  service:
+    name: raspotify
+    state: started

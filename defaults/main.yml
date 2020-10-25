@@ -1,0 +1,4 @@
+---
+raspotify_backend_args: "--backend alsa"
+raspotify_device_name: raspotify
+raspotify_version: "0.14.0~librespot.20200724T030042Z.6aac8a6"

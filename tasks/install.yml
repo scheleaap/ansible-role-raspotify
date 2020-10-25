@@ -1,0 +1,26 @@
+---
+- name: "Ensure /etc/sources.list.d exists"
+  become: true
+  file:
+    path: /etc/sources.list.d
+    state: directory
+    mode: 0755
+- name: "Ensure Raspotify's APT repository's GPG key is present"
+  become: true
+  apt_key:
+    url: https://dtcooper.github.io/raspotify/key.asc
+    state: present
+- name: "Ensure Raspotify's APT repository is present"
+  become: true
+  apt_repository:
+    repo: deb https://dtcooper.github.io/raspotify raspotify main
+    state: present
+    filename: raspotify
+    update_cache: yes
+- name: "Ensure Raspotify is installed"
+  become: true
+  apt:
+    name: "raspotify={{ raspotify_version }}"
+    state: present
+  notify:
+    - restart raspotify

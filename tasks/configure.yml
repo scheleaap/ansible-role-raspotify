@@ -1,0 +1,17 @@
+---
+- name: "Ensure the Raspotify device name is set"
+  become: true
+  lineinfile:
+    dest: /etc/default/raspotify
+    regexp: ^#?DEVICE_NAME=
+    line: "DEVICE_NAME={{ raspotify_device_name }}"
+  notify:
+    - restart raspotify
+- name: "Ensure the Raspotify backend arguments are set"
+  become: true
+  lineinfile:
+    dest: /etc/default/raspotify
+    regexp: ^#?BACKEND_ARGS=
+    line: "BACKEND_ARGS={{ raspotify_backend_args }}"
+  notify:
+    - restart raspotify

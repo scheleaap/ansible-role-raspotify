@@ -2,16 +2,27 @@
 - name: "Ensure the Raspotify device name is set"
   become: true
   lineinfile:
-    dest: /etc/default/raspotify
-    regexp: ^#?DEVICE_NAME=
-    line: "DEVICE_NAME={{ raspotify_device_name }}"
+    dest: /etc/raspotify/conf
+    regexp: ^#?LIBRESPOT_NAME=
+    line: "LIBRESPOT_NAME=\"{{ raspotify_device_name }}\""
+  when: raspotify_device_name != None
   notify:
     - restart raspotify
-- name: "Ensure the Raspotify backend arguments are set"
+- name: "Ensure the Raspotify audio backend is set"
   become: true
   lineinfile:
-    dest: /etc/default/raspotify
-    regexp: ^#?BACKEND_ARGS=
-    line: "BACKEND_ARGS={{ raspotify_backend_args }}"
+    dest: /etc/raspotify/conf
+    regexp: ^#?LIBRESPOT_BACKEND=
+    line: "LIBRESPOT_BACKEND={{ raspotify_audio_backend }}"
+  when: raspotify_audio_backend != None
+  notify:
+    - restart raspotify
+- name: "Ensure the Raspotify audio device is set"
+  become: true
+  lineinfile:
+    dest: /etc/raspotify/conf
+    regexp: ^#?LIBRESPOT_DEVICE=
+    line: "LIBRESPOT_DEVICE={{ raspotify_audio_device }}"
+  when: raspotify_audio_device != None
   notify:
     - restart raspotify

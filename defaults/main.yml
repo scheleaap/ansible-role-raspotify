@@ -1,4 +1,5 @@
 ---
-raspotify_backend_args: "--backend alsa"
-raspotify_device_name: raspotify
-raspotify_version: "0.14.0~librespot.20200724T030042Z.6aac8a6"
+raspotify_audio_backend: null
+raspotify_audio_device: null
+raspotify_device_name: null
+raspotify_version: "0.41.0~librespot.v0.4.1"
